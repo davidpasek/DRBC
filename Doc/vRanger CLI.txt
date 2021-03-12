@@ -1,0 +1,31 @@
+Rem ********************
+Rem BACKUP
+Rem ********************
+
+Rem LL-DC
+"C:\Program Files\vizioncore\esxRanger Professional\esxRangerProCli.exe" -virtualcenter vc2://VirtualMachine=vm-213 -copylocal R:\. -drives:db -zipname [year].[month].[day]_[hour].[minute].[second]_[config] -vmnotes  -diffratio 50 -maxfullage 14 -retendays 7 -mailonerror -mailto it@home.uw.cz
+
+Rem VC
+"C:\Program Files\vizioncore\esxRanger Professional\esxRangerProCli.exe" -virtualcenter vc2://VirtualMachine=vm-26 -copylocal R:\. -drives:db -zipname [year].[month].[day]_[hour].[minute].[second]_[config] -vmnotes  -diffratio 50 -maxfullage 14 -retendays 31
+
+Rem ECM_CACHE
+"C:\Program Files\vizioncore\esxRanger Professional\esxRangerProCli.exe" -virtualcenter vc2://VirtualMachine=vm-210 -copylocal R:\. -drives:db -vmnotes  -diffratio 50 -maxfullage 14 -retendays 31 -zipname [year].[month].[day]_[hour].[minute].[second]_[config]
+
+Rem REPLIKATOR
+"C:\Program Files\vizioncore\esxRanger Professional\esxRangerProCli.exe" -virtualcenter vc2://VirtualMachine=vm-216 -copylocal R:\. -drives:db -vmnotes  -noquiesce  -diffratio 50 -maxfullage 14 -retendays 31 -zipname [year].[month].[day]_[hour].[minute].[second]_[config] 
+
+Rem LL-ARCHIVE
+"C:\Program Files\vizioncore\esxRanger Professional\esxRangerProCli.exe" -virtualcenter vc2://VirtualMachine=vm-312 -copylocal R:\. -drives:db -vmnotes  -diffratio 50 -maxfullage 14 -retendays 31 -zipname [year].[month].[day]_[hour].[minute].[second]_[config]
+
+Rem LL-DB
+"C:\Program Files\vizioncore\esxRanger Professional\esxRangerProCli.exe" -virtualcenter vc2://VirtualMachine=vm-310 -copylocal R:\. -drives:db -vmnotes  -diffratio 50 -maxfullage 14 -retendays 31 -zipname [year].[month].[day]_[hour].[minute].[second]_[config]
+
+
+Rem ********************
+Rem RESTORE
+Rem ********************
+
+Rem LL-DC
+"C:\Program Files\vizioncore\esxRanger Professional\esxRangerProCli.exe"  -restore -local R:\.\2008.06.24_01.00.05_LL-DC.tvzc.info -forcepoweroff -restoreconfig -registervm -forceoverwrite -forcepoweron  -unattended  -forceoverwrite -destserver 192.168.20.14 -destvmfs "VM's Configuration,Datastore2;LL-DC.vmdk,Datastore2;" -networkname ethernet0,VI_STANDBY;
+
+...

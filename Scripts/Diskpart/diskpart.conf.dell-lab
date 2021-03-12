@@ -1,0 +1,31 @@
+# Configuration hash
+sub getConfig {
+	my %CONFIG = ();
+	#DEBUG 1 = yes, 0 = no?
+	#$CONFIG{debug} = 1;
+	$CONFIG{debug} = 0;
+	$CONFIG{debug} = 1;
+	$CONFIG{debug_output} = 'c:\drbc\log\diskpart.pl.log';
+
+	$CONFIG{mail_smtp_server}="router.dell-lab.uw.cz";
+	$CONFIG{mail_to}="david.pasek\@gmail.com";
+	$CONFIG{mail_from}="david_pasek\@dell.com";
+
+	$CONFIG{diskpart_command}='c:\windows\system32\diskpart.exe';
+	$CONFIG{mountvol_command}='c:\windows\system32\mountvol.exe';
+	$CONFIG{reboot_command}='c:\windows\system32\shutdown.exe /r /f /t 0';
+	$CONFIG{reboot_counter} = 'c:\drbc\log\reboot_counter.log';
+	$CONFIG{max_reboots} = 10;
+
+	#LL-ARCHIVE
+	#$CONFIG{windows_services_startup_order}="spawner";
+	
+	#LL-DB
+	$CONFIG{windows_services_startup_order}="spawner mssqlserver sqlserveragent";
+	$CONFIG{windows_service}{spawner}="net start spawner";
+	$CONFIG{windows_service}{mssqlserver}="net start mssqlserver";
+	$CONFIG{windows_service}{sqlserveragent}="net start sqlserveragent";
+
+	return %CONFIG;
+}
+

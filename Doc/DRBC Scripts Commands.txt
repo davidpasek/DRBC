@@ -1,0 +1,29 @@
+LIST STANDBY SERVERS FROM SCRIPT CONFIGURATION
+drbc.pl --url https://vc.home.uw.cz/sdk/webService --username administrator --password password --action list_standby_servers
+
+SHUTDOWN STANDBY SERVERS
+drbc.pl --url https://vc.home.uw.cz/sdk/webService --username administrator --password password --action shutdown_standby_servers
+
+SHUTDOWN STANDBY SERVERS & UNREGISTER THEM FROM INVENTORY
+drbc.pl --url https://vc.home.uw.cz/sdk/webService --username administrator --password password --action shutdown_standby_servers --unregister
+
+SHUTDOWN STANDBY SERVERS & DELETE THEM FROM DISK (and inventory)
+drbc.pl --url https://vc.home.uw.cz/sdk/webService --username administrator --password password --action shutdown_standby_servers --deletefromdisk
+
+SHUTDOWN STANDBY SERVERS & REMOVE THEIR RDM DISKS
+drbc.pl --url https://vc.home.uw.cz/sdk/webService --username administrator --password password --action shutdown_standby_servers --remove_rdm
+
+RELOCATE STANDBY SERVERS INTO RESOURCEPOOL STANDBY
+drbc.pl --url https://vc.home.uw.cz/sdk/webService --username administrator --password password --action relocate_standby_servers_into_standby_pool
+
+SHUTDOWN STANDBY SERVERS & ADD THEIR RDM DISKS
+drbc.pl --url https://vc.home.uw.cz/sdk/webService --username administrator --password password --action shutdown_standby_servers --add_rdm
+
+START STANDBY SERVERS FROM SCRIPT CONFIGURATION
+drbc.pl --url https://vc.home.uw.cz/sdk/webService --username administrator --password password --action start_standby_servers
+
+SYNC CLONEGROUPS in Disk Array at Backup Site (DR LUNs TO BC LUNs)
+naviseccli_snapview.pl -m syncandfractureclones
+
+VRANGER restore VM's from image archive into ESX servers
+vranger.pl -m restore
